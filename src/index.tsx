@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import List from './components/ListGroups/List';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+// import ListGroup from './components/ListGroups/ListGroup';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <List />
   </React.StrictMode>
 );
 
