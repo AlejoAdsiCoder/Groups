@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import List from './components/ListGroups/List';
+// import List from './components/ListGroups/List';
+import ListGroup from './components/ListGroups/ListGroup';
+import NavBar from './components/Menu/NavBar';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 // import ListGroup from './components/ListGroups/ListGroup';
@@ -10,6 +13,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
+    <NavBar />
     <List />
   </React.StrictMode>
 );

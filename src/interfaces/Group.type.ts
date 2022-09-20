@@ -11,7 +11,6 @@ interface People {
 }
 
 export default interface Group {
-    index: number,
     id?: any | null,
     name: string,
     description: string,
