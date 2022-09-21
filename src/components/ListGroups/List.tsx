@@ -5,14 +5,19 @@ import Group from '../../interfaces/Group.type';
 import GroupDataService from '../../services/GroupDataService'
 
 import React, { Component } from 'react'
-import { Box, Button, Card, CardContent, Grid } from '@mui/material';
+import { Box, Button, Card, CardContent, CardHeader, Grid, IconButton, Typography } from '@mui/material';
+import DeleteOutlined from '@mui/icons-material/DeleteOutlined'
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import NavBar from '../Menu/NavBar';
+import { People } from '@mui/icons-material';
+import { Link } from 'react-router-dom';
 type Props = {};
 
 
 // type T = keyof Group;
 type State = {
     groups: Array<Group>
+    people: any
 }
 
 export default class List extends Component<Props, State> {
@@ -22,6 +27,7 @@ export default class List extends Component<Props, State> {
 
         this.state = {
             groups: [],
+            people: []
         };
     }
 
@@ -33,30 +39,31 @@ export default class List extends Component<Props, State> {
         GroupDataService.getAll()
             .then((response: any) => {
                 this.setState({
-                    groups: response.data.groups
+                    groups: response.data.groups,
+                    people: response.data.groups[0].people
                 });
-                console.log(this.state.groups);
+                console.log(this.state.people);
         })
         .catch((e: Error) => {
             console.log(e);
         });
     }
+
+    // listPeople() {
+        
+    //     for(const people of groups: Group) {
+    //         const { name, active } = per;
+    //         if (per.includes()) {
+
+    //         }
+    //     }
+    // }
   render() {
-    const { groups } = this.state;
+    const { groups, people } = this.state;
     return (
         <div>
             <Container>
-            <Box
-                sx={{
-                display: 'flex',
-                flexWrap: 'wrap-reverse',
-                p: 1,
-                m: 1,
-                bgcolor: 'background.paper',
-                maxWidth: 300,
-                borderRadius: 1,
-                }}
-            >
+            <Grid container mt={2} spacing={3}>
                 {
                         // [groups].map((object, index) => {
                         //   console.log(object[index]);
@@ -65,30 +72,43 @@ export default class List extends Component<Props, State> {
                 //      console.log(groups)
                 //    ))
 
-                groups.map((item: Group) => {
+                groups.map((group: Group, index) => {
                     return (
-                       <Box sx={{
-                        p: 1,
-                        m: 1,
-                        bgcolor: (theme) => (theme.palette.mode === 'dark' ? '#101010' : 'grey.100'),
-                        color: (theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800'),
-                        border: '1px solid',
-                        borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'grey.800' : 'grey.300',
-                        borderRadius: 2,
-                        fontSize: '0.875rem',
-                        fontWeight: '700',
-                       }}>
-                            <div>
-                                {item.name}<br />
-                                {item.description}
-                            </div>
-                        </Box>
+                       <Grid item key={group.id} xs={12} md={6} lg={4}>
+                            <Card>
+                                <CardHeader
+                                    action={
+                                        <>
+                                        <IconButton>
+                                            <DeleteOutlined />
+                                        </IconButton>
+                                        {/* <IconButton>
+                                            <Link to={{ pathname: `/people/${group.id}` }}>
+                                                <VisibilityIcon />
+                                            </Link>
+                                        </IconButton> */}
+                                        </>
+                                    }
+                                    title={group.name}
+                                    subheader={group.description}
+                                >
+                                    <CardContent>
+                                        <Typography variant="body2">
+                                            <div>
+                                                <div key={group.id}>{group.name}</div>
+                                                
+                                            </div>
+                                            {/* {group.people[index].name} */}
+                                        </Typography>
+                                    </CardContent>
+                                </CardHeader>
+                            </Card>
+                        </Grid>
                       )
                     }
                   )
                 } 
-            </Box>
+            </Grid>
             </Container>
         </div>
     )
