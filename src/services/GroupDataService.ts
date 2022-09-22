@@ -1,5 +1,5 @@
 import http from "../http-common"
-import { createGroup } from "../interfaces/createGroup.type";
+import createGroup from "../interfaces/createGroup.type";
 import Group from "../interfaces/Group.type";
 
 class GroupDataService {

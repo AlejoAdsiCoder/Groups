@@ -82,25 +82,25 @@ export default class List extends Component<Props, State> {
                                         <IconButton>
                                             <DeleteOutlined />
                                         </IconButton>
-                                        {/* <IconButton>
+                                        <IconButton>
                                             <Link to={{ pathname: `/people/${group.id}` }}>
                                                 <VisibilityIcon />
                                             </Link>
-                                        </IconButton> */}
+                                        </IconButton>
                                         </>
                                     }
                                     title={group.name}
                                     subheader={group.description}
                                 >
-                                    <CardContent>
+                                    {/* <CardContent>
                                         <Typography variant="body2">
                                             <div>
                                                 <div key={group.id}>{group.name}</div>
                                                 
                                             </div>
-                                            {/* {group.people[index].name} */}
+                                            {group.people[index].name} 
                                         </Typography>
-                                    </CardContent>
+                                    </CardContent> */}
                                 </CardHeader>
                             </Card>
                         </Grid>
